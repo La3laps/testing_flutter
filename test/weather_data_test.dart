@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:testing_flutter/services/weather_data.dart';
 
 void main() {
-  test('WeatherData parses correctly', () {
+  test('WeatherData parse correctement', () {
     const mockJson = {
       "2025-09-03 14:00:00": {
         "temperature": {"2m": 295.15},
