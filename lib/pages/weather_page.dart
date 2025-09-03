@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_json_viewer/flutter_json_viewer.dart';
+import 'package:intl/intl.dart';
 import '../services/weather_service.dart';
 import '../services/weather_data.dart';
 
@@ -91,13 +92,19 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget _buildWeatherInfo() {
     final data = _parsedData!;
     final celcius = data.temperature - 273.15;
+    // Parse string to DateTime
+    final DateTime dateTime = DateTime.parse(data.date);
+    final String formattedDate =
+        DateFormat('MMM dd, yyyy – hh:mm a').format(dateTime);
+
+    print(formattedDate);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Prévision pour : ${data.date}",
+            "Prévision pour : $formattedDate",
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 20),
@@ -115,7 +122,6 @@ class _WeatherPageState extends State<WeatherPage> {
       margin: const EdgeInsets.symmetric(vertical: 10),
       elevation: 4,
       child: ListTile(
-        leading: const Icon(Icons.thermostat),
         title: Text(title),
         trailing: Text(
           value,
