@@ -12,7 +12,7 @@ class WeatherService {
     if (response.statusCode == 200) {
       return convert.jsonDecode(response.body) as Map<String, dynamic>;
     } else {
-      print("Request failed with status: ${response.statusCode}.");
+      print("Requête non reconnu, code erreur: ${response.statusCode}.");
       return null;
     }
   }
